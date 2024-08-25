@@ -1,0 +1,9 @@
+src/
+models/
+venv_langchain/
+files/
+notebook/
+src_langchain/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
