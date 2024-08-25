@@ -21,7 +21,7 @@ st.title("Otter")
 
 @st.cache_resource
 def load_model():
-    model = LLM(model_id="microsoft/phi-2",trust_remote_code=True,torch_dtype= torch.bfloat16, device_map = "cuda")
+    model = LLM(model_id="microsoft/phi-2",trust_remote_code=True,torch_dtype= torch.bfloat16, device_map = "auto")
     return model
 
 
