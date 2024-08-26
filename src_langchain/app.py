@@ -112,9 +112,6 @@ def main():
         with st.chat_message("assistant"):
             context = (None if uploaded_files == [] else db.retrieve(prompt,
                                                                     k=k))
-            
-            #response = model.generate(prompt,context,max_new_tokens=max_new_tokens,temperature=temperature)
-            #response = st.write_stream(model.stream_response(prompt,context,max_new_tokens=max_new_tokens,temperature=temperature))
 
             response_container = st.empty()  # Create an empty container for the streaming response
             full_response = ""  # Accumulate the full response here

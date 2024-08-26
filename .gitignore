@@ -3,6 +3,7 @@ models/
 venv_langchain/
 files/
 notebook/
+src_langchain/Raw
 
 
 # Byte-compiled / optimized / DLL files

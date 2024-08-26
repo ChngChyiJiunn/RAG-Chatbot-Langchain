@@ -2,15 +2,8 @@ from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_chroma import Chroma
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-from langchain.schema.document import Document
-from langchain.schema.runnable import RunnablePassthrough,RunnableParallel
-from langchain.retrievers.multi_query import MultiQueryRetriever
-from langchain.retrievers.document_compressors import FlashrankRerank,EmbeddingsFilter
-from langchain.retrievers.document_compressors import DocumentCompressorPipeline
-from langchain_community.document_transformers import EmbeddingsRedundantFilter
+from langchain.retrievers.document_compressors import FlashrankRerank
 from langchain.retrievers import ContextualCompressionRetriever
-import chromadb
-#from flashrank import Ranker, RerankRequest
 
 from uuid import uuid4
 
@@ -34,9 +27,6 @@ class EmbeddingModel:
 class ChromaDB:
     def __init__(self,embed_model,persist_directory: str =  "./chroma_db", llm = None) -> None:
 
-        # self.vector_store = Chroma.from_documents(docs, 
-        #                                           embedding= embed_model,
-        #                                           persist_directory=save_persist_directory)
         self.embed_model = embed_model
         self.persist_directory = persist_directory
         self.vector_store = Chroma(persist_directory=persist_directory,
@@ -54,10 +44,6 @@ class ChromaDB:
 
     def save(self,docs):
 
-        #directory = save_persist_directory if save_persist_directory else self.persist_directory
-        #self.vector_store = Chroma.from_documents(docs,
-                                            # embedding= self.embed_model,
-                                            # persist_directory=directory)
         for split_doc_batch in self.split_batch(docs):
             uuids = [str(uuid4()) for _ in range(len(split_doc_batch))]
             self.vector_store.add_documents(documents=split_doc_batch,ids=uuids)
@@ -68,14 +54,11 @@ class ChromaDB:
         contexts = self.vector_store.similarity_search(question,k=k)
         print(contexts)
         context = "".join(context.page_content + "\n" for context in contexts)
-        #retriever = self.vector_store.as_retriever(k=no_of_retrievers)
 
         return context
     
     def retrieve(self, question:str, k:int=4,llm =None):
-        #llm = llm if llm is not None else self.llm 
-        #mq_retriever = MultiQueryRetriever.from_llm(retriever=self.vector_store.as_retriever(search_kwargs={"k": k}),llm = llm)
-        # retrieved_docs = mq_retriever.get_relevant_documents(query = question)
+
         compressor = FlashrankRerank()
         compression_retriever = ContextualCompressionRetriever(base_compressor=compressor,
                                                                base_retriever=self.vector_store.as_retriever(search_kwargs={"k": k}))

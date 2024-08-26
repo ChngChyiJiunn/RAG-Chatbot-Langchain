@@ -35,7 +35,6 @@ class LLM:
                                 temperature=temperature,
                                 do_sample = do_sample,
                                 repetition_penalty=repetition_penalty,
-                                #device =self.device,
                                 pad_token_id = self.tokenizer.eos_token_id,
                                 **kwargs)
         llm = HuggingFacePipeline(pipeline=gen_pipeline)
@@ -49,44 +48,6 @@ class LLM:
         else:
             chat =  f"Instruct: Use the following context to generate a response. Context: {context} {question}\nOutput:"               
            
-        # if context == None or context=="": # If cannot find context
-        #     chat =[
-        #     {"role":"assistant",
-        #      "content":"""You are a friendly chatbot assistant that gives structured output.
-        #     """
-        #     },
-        #     {"role":"user",
-        #      "content":f"Questions:{question}"}
-        #     ]
-        # else:
-        #     chat =[
-        #         {"role":"assistant",
-        #         "content":"""You are a friendly chatbot assistant that gives structured output.
-        #         Instructions: Use the context to help you to generate the output. 
-        #         """
-        #         },
-        #         {"role":"user",
-        #         "content":f"Here is the context:{context}. Questions:{question}"}
-        #     ]
-
-
-        # if context == None or context=="": # If cannot find context
-        #     chat =[
-        #     {"role":"user",
-        #      "content":f"Questions: {question}"}
-        #     ]
-        # else:
- 
-        #     chat =[
-        #         {"role":"user",
-        #         "content":f"Here is the context: {context}. Questions: {question}"}
-        #     ]
-        # tokenized_chat = self.tokenizer.apply_chat_template(chat,
-        #                                                     tokenize=True,
-        #                                                     add_generation_prompt=False,
-        #                                                     #skip_special_tokens =True,
-        #                                                     return_attention_mask= False,
-        #                                                     return_tensors="pt").to(self.device)
         generation_config = GenerationConfig(max_new_tokens = max_new_tokens,
                                             temperature = temperature,
                                             do_sample = True,
@@ -121,13 +82,6 @@ class LLM:
                     | llm
                     | StrOutputParser()
                     )
-                    #| (lambda x: x.replace("$","\$"))
-                    
-        # for chunk in rag_chain.stream(input_variables):
-        #     time.sleep(1)
-        #     yield chunk
-               
-
 
         return rag_chain.invoke(input_variables)
 
