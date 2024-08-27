@@ -8,16 +8,16 @@ Retrieval-Augmented Generation (RAG) is a hybrid approach that combines the stre
 
 ## Features 👑
 ### Instruct Mode without Context
-![Alt Text](https://github.com/deeplyneuralicious/RAG-Chatbot-Langchain/blob/main/img/Normal%20Instruct%20mode.gif)
+![](https://github.com/deeplyneuralicious/RAG-Chatbot-Langchain/blob/main/img/Normal%20Instruct%20mode.gif)
 
 ### Upload the Documents to be saved to ChromaDB
-![Alt Text](https://github.com/deeplyneuralicious/RAG-Chatbot-Langchain/blob/main/img/Upload%20PDF%20document.gif)
+![](https://github.com/deeplyneuralicious/RAG-Chatbot-Langchain/blob/main/img/Upload%20PDF%20document.gif)
 
 ### RAG Query Mode with Context
-![Alt Mode](https://github.com/deeplyneuralicious/RAG-Chatbot-Langchain/blob/main/img/RAG.gif)
+![](https://github.com/deeplyneuralicious/RAG-Chatbot-Langchain/blob/main/img/RAG.gif)
 
 ### Change the parameters to generate better response.
-
+![](https://github.com/deeplyneuralicious/RAG-Chatbot-Langchain/blob/main/img/parameters.png)
 
 ## Key Architecture ⚙
 The RAG Chatbot consists of the following components:
