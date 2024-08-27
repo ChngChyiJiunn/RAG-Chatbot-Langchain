@@ -44,7 +44,7 @@ cd RAG-Chatbot-Langchain
 ```
 pip install -r requirements.txt
 ```
-3. Run the app with Streamlit
+3. Run the app with Streamlit.
 ```
 streamlit run app.py
 ```
