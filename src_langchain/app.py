@@ -11,8 +11,8 @@ FILES_DIR = os.path.normpath(
     os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "files")
 )
 
-st.set_page_config(page_title="Streamlit Chatbot", page_icon="🤖")
-st.title("Otter")
+st.set_page_config(page_title="RAG Chatbot", page_icon="🤖")
+st.title("RAG Chatbot 💬")
 
 @st.cache_resource
 def load_model():
@@ -76,10 +76,11 @@ def add_document(docs):
 
 def main():        
     with st.sidebar:
+        st.title("🔴🟡 Parameter")
         max_new_tokens = st.number_input("max_new_tokens",128,4096,512)
         k = st.number_input("k",1,10,2)
         temperature = st.number_input("temperature",0.1,1.0,0.25)
-        uploaded_files = st.file_uploader("Upload a .pdf File",type=["PDF","pdf"],accept_multiple_files=True)
+        uploaded_files = st.file_uploader("📄 Upload a .pdf File",type=["PDF","pdf"],accept_multiple_files=True)
         # if there is any uploaded file, save documents to db
         if uploaded_files != []:
             db = load_db()
