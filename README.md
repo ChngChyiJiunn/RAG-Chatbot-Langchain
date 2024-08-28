@@ -7,16 +7,16 @@ This repository contains the code for a Retrieval-Augmented Generation (RAG) Cha
 Retrieval-Augmented Generation (RAG) is a hybrid approach that combines the strengths of generative language models with the precision of information retrieval systems. The system first retrieves relevant documents from a knowledge base and then uses a generative model to craft a response based on the retrieved information.
 
 ## Features 👑
-### Instruct Mode without Context
+### ▶ Instruct Mode without Context
 ![](https://github.com/deeplyneuralicious/RAG-Chatbot-Langchain/blob/main/img/Normal%20Instruct%20mode.gif)
 
-### Upload the Documents to be saved to ChromaDB
+### ▶ Upload the Documents to be saved to ChromaDB
 ![](https://github.com/deeplyneuralicious/RAG-Chatbot-Langchain/blob/main/img/Upload%20PDF%20document.gif)
 
-### RAG Query Mode with Context
+### ▶ RAG Query Mode with Context
 ![](https://github.com/deeplyneuralicious/RAG-Chatbot-Langchain/blob/main/img/RAG.gif)
 
-### Change the parameters to generate better response.
+### ▶ Change the parameters to generate better response.
 ![](https://github.com/deeplyneuralicious/RAG-Chatbot-Langchain/blob/main/img/parameters.png)
 
 ## Key Architecture ⚙
